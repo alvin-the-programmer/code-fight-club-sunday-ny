@@ -98,3 +98,17 @@ You may assume the two numbers do not contain any leading zero, except the numbe
 ```
 
 **In order to solve this problem we need to understand what a linked list is**
+A linked list is a collection of nodes where a node contains just a value and a pointer to the next node. The last node in a linked list points to ```None``` or whichever languages equivalent
+
+leetcode provides us the definition of a node below
+**Definition for singly-linked list**
+```python3
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+```
+
+Given a simple list node where we want a pointing to b which points to c we can write
+```python3
+```
