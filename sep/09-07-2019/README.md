@@ -43,11 +43,11 @@ class Dog:
  We could name self something else. self is not a reservered keyword in Python although it is convention to use self
 ***
 
-If our Dog class had a bark method we could access it by writing d.bark('Alvin')
+If our Dog class had a bark method we could access it by writing `d.bark('Alvin')`
 
 ```python
 def bark(self, person):
-  return print(self.name + ' barks at ' + person)
+  print(self.name + ' barks at ' + person)
 
 d = Dog('Fido', 3)
 d.bark('alvin') # => Fido barks at alvin
