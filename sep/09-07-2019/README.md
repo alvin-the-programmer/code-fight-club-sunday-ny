@@ -63,8 +63,8 @@ d.bark('alvin') # prints "Fido barks at alvin"
 Dog.bark(d, 'alvin') # prints "Fido barks at alvin"
 ```
 
-Note in the code above that d.bark('alvin') is syntactic sugar for 
-Dog.bark(d, 'alvin').
+Note in the code above that `d.bark('alvin')` is syntactic sugar for 
+`Dog.bark(d, 'alvin')`.
 
 You can see we pass a class instance as the first argument, which is why we take
 self as the first argument
@@ -113,7 +113,7 @@ Under the hood Python's `len` method does something like
 
 ```python
 def len(ob):
-  return ob.__len__
+  return ob.__len__()
 ```
 
 ## Linked Lists
@@ -256,25 +256,26 @@ c = [4, 3]
 a = c # false
 ```
 
-When using `==` in Ruby and Python to compare arrays, it will return a true when the order and values in the array are the same:
+When using `==` in Ruby and Python to compare arrays, it will return true when
+ the order and values in the array are the same:
 
 ```python
 # in python
 a = [3, 4]
 b = [3, 4]
-a == b # true
+a == b # True
 
 c = [4, 3]
-a = c # false
+a = c # False
 ```
 
-However if we use `is` then a `is` b returns `False`:
+However if we use the `is` operator,  then `a is b` returns `False`.
 
 ```python
 # in python
 a = [3, 4]
 b = [3, 4]
-a is b # false
+a is b # False
 ```
 
 While the two arrays contains the same values in the same order they are not the
@@ -282,6 +283,8 @@ same array, so if we were to modify one of them then the other array would not
 be modified:
 
 ```python
+a = [3, 4]
+b = [3, 4]
 a[0] = '!'
 b[1] = '!'
 
@@ -289,28 +292,30 @@ a # ['!', 4]
 b # [3, '!']
 ```
 
-In order for `a is b` to be true then we would need to assign a to b
+In order for `a is b` to be True then we would need to assign a to b
 
 ```python
 a = [3, 4]
 b = a
 
-a is b # true
+a is b # True
 ```
 
 ## Edge cases
 
-Focusing back to the leetcode problem. The first edge case to consider is linked lists of different lengths:
+Focusing back to the leetcode problem. The first edge case to consider is linked
+ lists of different lengths:
 
 ```
 list1 = 6 -> 2 -> None
 list2 = 1 -> None
 
 result = 7 -> 2 -> None
-26 + 2 = 27
+26 + 1 = 27
 ```
 
-The second edge case is when the digits sum to a value greater or equal 10, meaning that we need to carry to a 1 to the next significant digit's place:
+The second edge case is when the digits sum to a value greater or equal 10, 
+meaning that we need to carry to a 1 to the next significant digit's place:
 
 ```
 list1 = 6 -> 2 -> None
@@ -354,8 +359,8 @@ we can treat the node as having a value of 0. That is, if our current node is
   result_node.next = self.addTwoNumbers(next1, next2)
 ```
 
-**Next we should handle the easier of the two carry cases** When two numbers
-sums to a value greater or equal to 10 then we need to carry 1 to the next
+Next we should handle the easier of the two carry cases When two numbers
+sum to a value greater or equal to 10 then we need to carry 1 to the next
 number
 
 ```python
