@@ -42,27 +42,29 @@ class Dog:
 ```
 
 **In order to have access to self in python classes we must pass self as the
-first argument** We could name self something else. self is not a reservered
+first argument** We could name self something else, self is not a reservered
 keyword in Python although it is convention to use self
 
----
+#### Calling Instance Methods
 
 If our Dog class had a bark method we could access it by writing
 `d.bark('Alvin')`
 
 ```python
-def bark(self, person):
-  print(self.name + ' barks at ' + person)
+class Dog:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+  def bark(self, person):
+    print(self.name + ' barks at ' + person)
 
 d = Dog('Fido', 3)
-d.bark('alvin') # => Fido barks at alvin
+d.bark('alvin') # prints "Fido barks at alvin"
+Dog.bark(d, 'alvin') # prints "Fido barks at alvin"
 ```
 
-which syntantic sugar for
-
-```python
-Dog.bark(d, 'alvin') # also outputs => Fido barks at alvin
-```
+Note in the code above that d.bark('alvin') is syntactic sugar for 
+Dog.bark(d, 'alvin').
 
 You can see we pass a class instance as the first argument, which is why we take
 self as the first argument
@@ -106,8 +108,6 @@ Under the hood Python's len() method does something like
 def len(ob):
   return ob.__len__
 ```
-
----
 
 ## Linked Lists
 
