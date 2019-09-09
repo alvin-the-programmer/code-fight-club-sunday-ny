@@ -30,7 +30,7 @@ class Dog {
 }
 ```
 
-In Python we use dunder init
+In Python we use dunder init (\_\_init\_\_)
 
 ```python
 class Dog:
