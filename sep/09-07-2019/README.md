@@ -8,9 +8,10 @@
   + nodes
   + [leetcode #60](https://leetcode.com/problems/add-two-numbers/)
 
-
 ### Notes about classes in Python3
+
 To run some code on creation of a new class in Ruby we have the initialize method
+
 ```ruby
 class Dog do
   def initialize(name)
@@ -20,6 +21,7 @@ end
 ```
 
 In JavaScript we have constructor
+
 ```javascript
 class Dog {
   constructor(name) {
@@ -29,16 +31,19 @@ class Dog {
 ```
 
 In Python we use dunder init
+
 ```python
 class Dog:
   def __init__(self, name, age):
     self.name = name
     self.age = age
 ```
+
  **In order to have access to self in python classes we must pass self as the first argument**
 ***
 
 If our Dog class had a bark method we could access it by writing d.bark('Alvin')
+
 ```python
 def bark(self, person):
   return print(self.name + ' barks at ' + person)
@@ -48,13 +53,16 @@ d.bark('alvin') # => Fido barks at alvin
 ```
 
 which syntantic sugar for
+
 ```python
 Dog.bark(d, 'alvin') # also outputs => Fido barks at alvin
 ```
+
 You can see we pass a class instance as the first argument, which is why we take self as the first argument
 
 ***
 Python has global methods like len() that works on all sorts of data structures
+
 ```python
 my_str = 'potato'
 my_list = [1,2,3,4,6]
@@ -83,14 +91,18 @@ print(len(d)) # 7
 ```
 
 Under the hood Python's len() method does something like
+
 ```python
 def len(ob):
   return ob.__len__
 ```
+
 ***
+
 ## Linked Lists
 
 We are given the problem description below for the leetcode problem
+
 ```
 You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
 
@@ -101,6 +113,7 @@ You may assume the two numbers do not contain any leading zero, except the numbe
 A linked list is a collection of nodes where a node contains just a value and a pointer to the next node. The last node in a linked list points to ```None``` or the language's equivalent (i.e. nil, null)
 
 leetcode provides us the definition for a node below
+
 ```python
 # Definition for singly-linked list
 class ListNode:
@@ -110,6 +123,7 @@ class ListNode:
 ```
 
 Given a simple list node where we want a pointing to b which points to c we can write
+
 ```python
 a = ListNode('a')
 b = ListNode('b')
@@ -148,6 +162,7 @@ class LinkedList:
 ```
 
 Back to the leetcode problem we are given the boilerplate code
+
 ```python
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
@@ -165,6 +180,7 @@ result = 7 -> 5 -> None
 ```
 
 We create a new ListNode with the value being the sum of the two nodes values at the head, then we move onto the next node's value for both lists
+
 ```
 list1 = 6 -> 2
 list2 = 1 -> 3
@@ -180,6 +196,7 @@ result = 7 -> 5 -> None
 ```
 
 If we translate that logic into code
+
 ```python
   def addTwoNumbers(self, l1: ListNode, l2: ListNode, carry = 0) -> ListNode:
     # If both lists point to None then we should return None since there are no more numbers to add and linked lists should have the tail pointing to None
@@ -193,7 +210,9 @@ If we translate that logic into code
 ```
 
 ## Side note about the keyword `is`
+
 In python we have english word keywords for operators
+
 ```python
 not # !
 or  # ||
@@ -201,6 +220,7 @@ and # &&
 ```
 However the keyword `is` is not the same as the equivalency operator `==`  
 Python's `==` is most similar to Ruby's `==`
+
 ```ruby
 # in ruby
 a = [3, 4]
@@ -210,7 +230,9 @@ a == b # true
 c = [4, 3]
 a = c # false
 ```
+
 We get the same results in python
+
 ```python
 # in python
 a = [3, 4]
@@ -222,6 +244,7 @@ a = c # false
 ```
 
 However if we use `is` then a `is` b returns false
+
 ```python
 # in python
 a = [3, 4]
@@ -230,6 +253,7 @@ a is b # false
 ```
 
 While the two arrays contains the same values in the same order they are not the same array, so if we were to modify one of them then the other array would not be modified
+
 ```python
 a[0] = '!'
 b[1] = '!'
@@ -239,6 +263,7 @@ b # [3, '!']
 ```
 
 In order for `a is b` to be true then we would need to assign a to b
+
 ```python
 a = [3, 4]
 b = a
@@ -247,8 +272,10 @@ a is b # true
 ```
 
 ## Back to the problem, we should start accounting for some edge cases
+
 The edge cases we should account for is
 + linked lists of different lengths
+
 ```
 list1 = 6 -> 2 -> None
 list2 = 1 -> None
@@ -256,7 +283,9 @@ list2 = 1 -> None
 result = 7 -> 2 -> None
 26 + 2 = 27
 ```
+
 + when the values sum is greater or equal 10 then we need to carry
+
 ```
 list1 = 6 -> 2 -> None
 list2 = 5 -> 1 -> None
@@ -264,7 +293,9 @@ list2 = 5 -> 1 -> None
 result = 1 -> 4 -> None
 26 + 15 = 41
 ```
+
 + when the last two values in the linked list sums to a value greater or equal 10 then we need to add an additional node for that carry
+
 ```
 list1 = 6 -> 2 -> None
 list2 = 1 -> 9 -> None
@@ -274,6 +305,7 @@ result = 7 -> 1 -> 1 -> None
 ```
 
 ## quick aside for ternaries in python
+
 In other languages we write a ternary like so  
 `variable =` (conditional) `?` (assignment if conditional is true) `:` (assignment if conditional is false)
 
@@ -283,6 +315,7 @@ In python we instead write it like
 ***
 Lets tackle these edges cases in order  
 First to deal with lists of different lengths, when a node is currently at None then we can instead say the value for that node is 0
+
 ```python
   # Set the value to 0 if there is no number to add
   val1 = 0 if l1 is None else l1.val
@@ -317,6 +350,7 @@ def addTwoNumbers(self, l1: ListNode, l2: ListNode, carry = 0) -> ListNode:
 
 Finally we can account for when the carry happens on the last node and we need to add an additional node  
 We can add an additional check in our base case
+
 ```python
 if head1 is None and head2 is None:
   if carry == 1:
@@ -326,6 +360,7 @@ if head1 is None and head2 is None:
 ```
 
 Our final solution looks like this
+
 ```python
 def addTwoNumbers(self, l1: ListNode, l2: ListNode, carry = 0) -> ListNode:
   if l1 is None and l2 is None:
