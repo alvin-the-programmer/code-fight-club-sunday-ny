@@ -1,16 +1,18 @@
 # 09-07-2019: Classes and Linked Lists
 
 ## Topics Covered:
-+ Python3
-  + self in instance methods
-  + global methods
-+ Linked Lists
-  + nodes
-  + [leetcode #60](https://leetcode.com/problems/add-two-numbers/)
+
+- Python3
+  - self in instance methods
+  - global methods
+- Linked Lists
+  - nodes
+  - [leetcode #2](https://leetcode.com/problems/add-two-numbers/)
 
 ### Notes about classes in Python3
 
-To run some code on creation of a new class in Ruby we have the initialize method
+To run some code on creation of a new class in Ruby we have the initialize
+method
 
 ```ruby
 class Dog
@@ -39,11 +41,14 @@ class Dog:
     self.age = age
 ```
 
- **In order to have access to self in python classes we must pass self as the first argument**
- We could name self something else. self is not a reservered keyword in Python although it is convention to use self
-***
+**In order to have access to self in python classes we must pass self as the
+first argument** We could name self something else. self is not a reservered
+keyword in Python although it is convention to use self
 
-If our Dog class had a bark method we could access it by writing `d.bark('Alvin')`
+---
+
+If our Dog class had a bark method we could access it by writing
+`d.bark('Alvin')`
 
 ```python
 def bark(self, person):
@@ -59,9 +64,11 @@ which syntantic sugar for
 Dog.bark(d, 'alvin') # also outputs => Fido barks at alvin
 ```
 
-You can see we pass a class instance as the first argument, which is why we take self as the first argument
+You can see we pass a class instance as the first argument, which is why we take
+self as the first argument
 
-***
+---
+
 Python has global methods like len() that works on all sorts of data structures
 
 ```python
@@ -77,14 +84,16 @@ len(my_list) # => 5
 len(my_dictionary) # => 2
 ```
 
-If we want to do something like len(dog) we can write a dunder len method that allows len() to work on our classes
+If we want to do something like len(dog) we can write a dunder len method that
+allows len() to work on our classes
 
 ```python
 def __len__(self):
   return 7
 ```
 
-Outside the class if we made a instance of a dog and called len on it we would get 7 as the result
+Outside the class if we made a instance of a dog and called len on it we would
+get 7 as the result
 
 ```python
 d = Dog('fido', 3)
@@ -98,20 +107,24 @@ def len(ob):
   return ob.__len__
 ```
 
-***
+---
 
 ## Linked Lists
 
-We are given the problem description below for the leetcode problem
+We are given the problem description below for the problem:
 
-```
-You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+> You are given two non-empty linked lists representing two non-negative
+> integers. The digits are stored in reverse order and each of their nodes
+> contain a single digit. Add the two numbers and return it as a linked list.
 
-You may assume the two numbers do not contain any leading zero, except the number 0 itself.
-```
+> You may assume the two numbers do not contain any leading zero, except the
+> number 0 itself.
 
-**In order to solve this problem we need to understand what a linked list is**  
-A linked list is a collection of nodes where a node contains just a value and a pointer to the next node. The last node in a linked list points to ```None``` or the language's equivalent (i.e. nil, null)
+### What is a linked list?
+
+A linked list is a collection of nodes where a node contains just a value and a
+pointer to the next node. The last node in a linked list points to `None` or the
+language's equivalent (i.e. nil, null)
 
 leetcode provides us the definition for a node below
 
@@ -123,7 +136,8 @@ class ListNode:
         self.next = None
 ```
 
-Given a simple list node where we want a pointing to b which points to c we can write
+Given a simple list node where we want a pointing to b which points to c we can
+write
 
 ```python
 a = ListNode('a')
@@ -135,8 +149,9 @@ b.next = c
 # a -> b -> c -> None
 ```
 
-Manually linking up nodes like this is time consuming and prone to errors
-So instead when we writing a LinkedList class we should also write a method to do that for us
+Manually linking up nodes like this is time consuming and prone to errors So
+instead when we writing a LinkedList class we should also write a method to do
+that for us
 
 ```python
 class LinkedList:
@@ -169,9 +184,9 @@ class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
 ```
 
-**Lets try to find a recursive solution to the problem**  
-If we ignore the edge cases we have an almost trivially simple problem.  
-Assume we are given the following linked lists
+**Lets try to find a recursive solution to the problem** If we ignore the edge
+cases we have an almost trivially simple problem. Assume we are given the
+following linked lists
 
 ```
 list1 = 6 -> 2 -> None
@@ -180,7 +195,8 @@ list2 = 1 -> 3 -> None
 result = 7 -> 5 -> None
 ```
 
-We create a new ListNode with the value being the sum of the two nodes values at the head, then we move onto the next node's value for both lists
+We create a new ListNode with the value being the sum of the two nodes values at
+the head, then we move onto the next node's value for both lists
 
 ```
 list1 = 6 -> 2
@@ -219,8 +235,9 @@ not # !
 or  # ||
 and # &&
 ```
-However the keyword `is` is not the same as the equivalency operator `==`  
-Python's `==` is most similar to Ruby's `==`
+
+However the keyword `is` is not the same as the equivalency operator `==`
+Python's `==` is most similar to Ruby's `==`:
 
 ```ruby
 # in ruby
@@ -232,7 +249,7 @@ c = [4, 3]
 a = c # false
 ```
 
-We get the same results in python
+When using `==` in Ruby and Python to compare arrays, it will return a true when the order and values in the array are the same:
 
 ```python
 # in python
@@ -244,7 +261,7 @@ c = [4, 3]
 a = c # false
 ```
 
-However if we use `is` then a `is` b returns false
+However if we use `is` then a `is` b returns `False`:
 
 ```python
 # in python
@@ -253,7 +270,9 @@ b = [3, 4]
 a is b # false
 ```
 
-While the two arrays contains the same values in the same order they are not the same array, so if we were to modify one of them then the other array would not be modified
+While the two arrays contains the same values in the same order they are not the
+same array, so if we were to modify one of them then the other array would not
+be modified:
 
 ```python
 a[0] = '!'
@@ -272,10 +291,9 @@ b = a
 a is b # true
 ```
 
-## Back to the problem, we should start accounting for some edge cases
+## Edge cases
 
-The edge cases we should account for is
-+ linked lists of different lengths
+Focusing back to the leetcode problem. The first edge case to consider is linked lists of different lengths:
 
 ```
 list1 = 6 -> 2 -> None
@@ -285,7 +303,7 @@ result = 7 -> 2 -> None
 26 + 2 = 27
 ```
 
-+ when the values sum is greater or equal 10 then we need to carry
+The second edge case is when the digits sum to a value greater or equal 10, meaning that we need to carry to a 1 to the next significant digit's place:
 
 ```
 list1 = 6 -> 2 -> None
@@ -295,7 +313,7 @@ result = 1 -> 4 -> None
 26 + 15 = 41
 ```
 
-+ when the last two values in the linked list sums to a value greater or equal 10 then we need to add an additional node for that carry
+The third edge case is when the when the last two digits carry:
 
 ```
 list1 = 6 -> 2 -> None
@@ -305,17 +323,17 @@ result = 7 -> 1 -> 1 -> None
 26 + 91 = 117
 ```
 
-## quick aside for ternaries in python
+### A quick aside for ternaries in python
 
-In other languages we write a ternary like so  
-`variable =` (conditional) `?` (assignment if conditional is true) `:` (assignment if conditional is false)
+In other languages we write a ternary like so `variable =` (conditional) `?`
+(assignment if conditional is true) `:` (assignment if conditional is false)
 
+In python we instead write it like `variable =` (assignment if conditional is
+true) `if` (conditional) `else` (assignment if conditional is false)
 
-In python we instead write it like  
-`variable =` (assignment if conditional is true) `if` (conditional) `else` (assignment if conditional is false)
-***
-Lets tackle these edges cases in order  
-First to deal with lists of different lengths, when a node is currently at None then we can instead say the value for that node is 0
+Lets tackle these edges cases in order. To deal with lists of different lengths,
+we can treat the node as having a value of 0. That is, if our current node is
+`None`, it will contribute `0` to the current digits sum.
 
 ```python
   # Set the value to 0 if there is no number to add
@@ -329,8 +347,10 @@ First to deal with lists of different lengths, when a node is currently at None 
   result_node.next = self.addTwoNumbers(next1, next2)
 ```
 
-**Next we should handle the easier of the two carry cases**
-When two numbers sums to a value greater or equal to 10 then we need to carry 1 to the next number
+**Next we should handle the easier of the two carry cases** When two numbers
+sums to a value greater or equal to 10 then we need to carry 1 to the next
+number
+
 ```python
 # account for the carry
 def addTwoNumbers(self, l1: ListNode, l2: ListNode, carry = 0) -> ListNode:
@@ -349,8 +369,8 @@ def addTwoNumbers(self, l1: ListNode, l2: ListNode, carry = 0) -> ListNode:
   return result_node
 ```
 
-Finally we can account for when the carry happens on the last node and we need to add an additional node  
-We can add an additional check in our base case
+Finally we can account for when the carry happens on the last node and we need
+to add an additional node. We can add an additional check in our base case:
 
 ```python
 if head1 is None and head2 is None:
@@ -360,7 +380,7 @@ if head1 is None and head2 is None:
     return None
 ```
 
-Our final solution looks like this
+Our final solution looks like this:
 
 ```python
 def addTwoNumbers(self, l1: ListNode, l2: ListNode, carry = 0) -> ListNode:
