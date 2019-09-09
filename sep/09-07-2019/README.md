@@ -30,7 +30,7 @@ class Dog {
 }
 ```
 
-In Python we use dunder init (\_\_init\_\_)
+In Python we use dunder init (dunder means **D**ouble **U**nderscores)
 
 ```python
 class Dog:
@@ -40,6 +40,7 @@ class Dog:
 ```
 
  **In order to have access to self in python classes we must pass self as the first argument**
+ We could name self something else. self is not a reservered keyword in Python although it is convention to use self
 ***
 
 If our Dog class had a bark method we could access it by writing d.bark('Alvin')
