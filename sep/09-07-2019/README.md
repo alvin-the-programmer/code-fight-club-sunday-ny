@@ -13,7 +13,7 @@
 To run some code on creation of a new class in Ruby we have the initialize method
 
 ```ruby
-class Dog do
+class Dog
   def initialize(name)
     self.name = name
   end
