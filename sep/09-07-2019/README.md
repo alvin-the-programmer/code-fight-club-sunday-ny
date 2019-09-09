@@ -71,7 +71,7 @@ self as the first argument
 
 ---
 
-Python has global methods like len() that works on all sorts of data structures
+Python has global methods like `len` that works on all sorts of data structures
 
 ```python
 my_str = 'potato'
@@ -86,12 +86,19 @@ len(my_list) # => 5
 len(my_dictionary) # => 2
 ```
 
-If we want to do something like len(dog) we can write a dunder len method that
-allows len() to work on our classes
+If we want to do something like `len(dog)` we can write a dunder len method that
+allows `len` to work on our classes
 
 ```python
-def __len__(self):
-  return 7
+class Dog:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+  def __len__(self):
+    return 7 * self.age
+
+d = Dog('fido', 3)
+print(len(d)) # prints 21
 ```
 
 Outside the class if we made a instance of a dog and called len on it we would
@@ -102,7 +109,7 @@ d = Dog('fido', 3)
 print(len(d)) # 7
 ```
 
-Under the hood Python's len() method does something like
+Under the hood Python's `len` method does something like
 
 ```python
 def len(ob):
