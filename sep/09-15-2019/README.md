@@ -4,11 +4,11 @@
 - Binary Trees
   + Depth First
   + Breadth First
-  + List deconstruction
 - Python
   + List Comprehension
-  + tuple
-  + deque
+  + Tuple
+  + Deque
+  + List deconstruction
 - Leet Code Problems
   + [leetcode #257](https://leetcode.com/problems/binary-tree-paths/)
     - [lc257 notes](lc_257.md)
